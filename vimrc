@@ -166,6 +166,7 @@ Plug 'SirVer/ultisnips'           " nice snippets
 Plug 'leafgarland/typescript-vim'   " typescript syntax highlighting
 Plug 'maxmellon/vim-jsx-pretty'    " jsx aka react syntax highlighting
 Plug 'lervag/vimtex'                " latex support
+" Plug 'python-mode/python-mode', { 'for': 'python', 'branch': 'develop' }
 
 Plug 'takac/vim-hardtime'           " disables repeated use of hjkl
 Plug 'vimwiki/vimwiki'              " something close to irl notepad

@@ -41,6 +41,10 @@ snippet hr "Href for url links"
 \href{${1:url}}{${2:display name}}$0
 endsnippet
 
+snippet it "item for itemize list" bA
+\item $0
+endsnippet
+
 snippet dm "Math" wA
 \[
 $1
@@ -117,8 +121,45 @@ snippet in "\in"
 \in
 endsnippet
 
+context math()
+snippet Z "reaaliluku" A
+\mathbb{Z}
+endsnippet
 
+context math()
+snippet R "Kokonaisluku???" A
+\mathbb{R}
+endsnippet
 
+context math()
+snippet min "Minus \" A
+\setminus
+endsnippet
+
+context math()
+snippet in "\in" A
+\in
+endsnippet
+
+context math()
+snippet nin "\notin" A
+\notin
+endsnippet
+
+context math()
+snippet cup "\cup" A
+\cup
+endsnippet
+
+context math()
+snippet cap "\cap" A
+\cap
+endsnippet
+
+context math()
+snippet mid "\mid" A
+\mid
+endsnippet
 
 snippet temp "Template file for uni tex files" bA
 \documentclass[a4paper, 12pt, openany]{article}

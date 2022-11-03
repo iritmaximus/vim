@@ -10,7 +10,7 @@ filetype plugin on            " idunno plugins work
 
 set timeoutlen=1000 ttimeoutlen=10  " disables esc wait time
 set updatetime=300                  " sets how often vim updates ex. plugins
-set fileformat=unix           " linebreaks to unix?
+" set fileformat=unix           " breaks vimtex?
 set encoding=UTF-8            " propably dont have to do this but ok
 
 if has("nvim")
@@ -33,11 +33,6 @@ au BufNewFile,BufRead *.ts
   \ set tabstop=2 |
   \ set softtabstop=2 |
   \ set shiftwidth=2 |
-
-au BufNewFile,BufRead *.tex
-  \ set wrap |
-  " \ set spell |
-  \ set linebreak |
 
 
 
@@ -161,6 +156,8 @@ Plug 'tpope/vim-commentary'         " comments lines
 Plug 'somini/vim-autoclose'         " closes brackets smartly
 Plug 'Yggdroot/indentLine'          " shows | on different indenting levels
 Plug 'SirVer/ultisnips'           " nice snippets
+Plug 'mg979/vim-visual-multi'
+Plug 'ctrlpvim/ctrlp.vim'
 
 " Plug 'sheerun/vim-polyglot'       " didin't work properly with typescript
 Plug 'leafgarland/typescript-vim'   " typescript syntax highlighting
@@ -171,8 +168,8 @@ Plug 'lervag/vimtex'                " latex support
 Plug 'takac/vim-hardtime'           " disables repeated use of hjkl
 Plug 'vimwiki/vimwiki'              " something close to irl notepad
 
-Plug 'preservim/vim-pencil'         " for typing with vim
-Plug 'preservim/vim-wordy'          " detect some weak and lazy things?
+" Plug 'preservim/vim-pencil'         " for typing with vim
+" Plug 'preservim/vim-wordy'          " detect some weak and lazy things?
 Plug 'ron89/thesaurus_query.vim'    " used for searching synonyms or something
 Plug 'junegunn/goyo.vim'            " so called zen mode for vim
 Plug 'junegunn/limelight.vim'       " highlights the thing you write
@@ -237,15 +234,15 @@ let g:hardtime_default_on = 0
 
 
 " vim-pencil
-augroup pencil
-  autocmd!
-  autocmd FileType markdown,mkd call pencil#init()
-  autocmd FileType text         call pencil#init()
-  autocmd FileType plaintex     call pencil#init()
-augroup END
+" augroup pencil
+"   autocmd!
+"   autocmd FileType markdown,mkd call pencil#init()
+"   autocmd FileType text         call pencil#init()
+"   autocmd FileType plaintex     call pencil#init()
+" augroup END
 
-let g:pencil#cursorwrap = 0     " lets hl to wrap to other lines
-let g:pencil#autoformat = 0     " combines lines that have linebreak but no gap
+" let g:pencil#cursorwrap = 0     " lets hl to wrap to other lines
+" let g:pencil#autoformat = 0     " combines lines that have linebreak but no gap
 " let g:pencil#textwidth = 74
 
 
@@ -270,6 +267,21 @@ set conceallevel=1
 let g:tex_conceal='abdmg'
 
 
+
+" CTRLP
+let g:ctrlp_map = '<c-p>'
+let g:ctrlp_cmd = 'CtrlP'
+
+" 'a' - the directory of the current file, unless it is a subdirectory of the cwd
+" 'r' - the nearest ancestor of the current file that contains one of these directories or files: .git .hg .svn .bzr _darcs
+let g:ctrlp_working_path_mode = 'ra'
+
+" If none of the default markers (.git .hg .svn .bzr _darcs) are present in a project,
+" you can define additional ones with g:ctrlp_root_markers:
+" let g:ctrlp_root_markers = ['pom.xml', '.p4ignore']
+
+" set wildignore+=/node_modules/*
+let g:ctrlp_custom_ignore = { 'dir': '\v(__pycache__|venv|build|node_modules)$' }
 " COOL PLUGINLESS STUFF
 set path+=**                  " tab completion for file related things
 

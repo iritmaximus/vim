@@ -41,20 +41,34 @@ snippet hr "Href for url links"
 \href{${1:url}}{${2:display name}}$0
 endsnippet
 
+
 snippet it "item for itemize list" bA
 \item $0
 endsnippet
 
+snippet enum "list enumerate" bA
+\begin{enumerate}
+	$0
+\end{enumerate}
+endsnippet
+
+snippet bold "textbf{}" A
+\textbf{$1}$0
+endsnippet
+
+snippet sec "section" bA
+\section{$1}$0
+endsnippet
+
+
+
+
+# "the math latex guy"
 snippet dm "Math" wA
 \[
 $1
-.\] $0
+\] $0
 endsnippet
-
-snippet ff "frac{}{} command"
-\frac{$1}{$2}$0
-endsnippet
-
 
 snippet "(^|[^a-zA-Z])mm" "Inline LaTeX math" rA
 `!p snip.rv = match.group(1)`\$ ${1:${VISUAL:}} \$$0
@@ -64,9 +78,9 @@ snippet "(^|[^a-zA-Z])ee" "e^{} supercript" rA
 `!p snip.rv = match.group(1)`e^{${1:${VISUAL:}}}$0
 endsnippet
 
-snippet "(^|[^a-zA-Z])ff" "\frac{}{}" rA
-`!p snip.rv = match.group(1)`\frac{${1:${VISUAL:}}}{$2}$0
-endsnippet
+# snippet "(^|[^a-zA-Z])ff" "\frac{}{}" rA
+# `!p snip.rv = match.group(1)`\frac{${1:${VISUAL:}}}{$2}$0
+# endsnippet
 
 snippet "([a-zA-Z]|[\}\)\]\|'])00" "Automatic 0 subscript" rA
 `!p snip.rv = match.group(1)`_{0}
@@ -86,6 +100,10 @@ endsnippet
 
 snippet "(^|[^a-zA-Z])sq" "square root" rA
 \sqrt{${1:num}}$0
+endsnippet
+
+snippet ff "frac" Ai
+\frac{$1}{$2}$0
 endsnippet
 
 
@@ -111,10 +129,6 @@ $0
 endsnippet
 
 
-context math()
-snippet sum "the big z thingy"
-\sum_{${1:i}}^${2:n}$0
-endsnippet
 
 context math()
 snippet in "\in"
@@ -122,43 +136,124 @@ snippet in "\in"
 endsnippet
 
 context math()
-snippet Z "reaaliluku" A
+snippet N "Luonnollinen luku" Ai
+\mathbb{N}
+endsnippet
+
+context math()
+snippet Z "Kokonaisluku" Ai
 \mathbb{Z}
 endsnippet
 
 context math()
-snippet R "Kokonaisluku???" A
+snippet R "Reaaliluku???" Ai
 \mathbb{R}
 endsnippet
 
 context math()
-snippet min "Minus \" A
+snippet C "Kompleksiluku" Ai
+\mathbb{C}
+endsnippet
+
+context math()
+snippet Y "varphi, vaihtokulma" Ai
+\varphi
+endsnippet
+
+context math()
+snippet pi "pi" Ai
+\pi
+endsnippet
+
+
+context math()
+snippet eq "equivalent" Ai
+\Leftrightarrow
+endsnippet
+
+context math()
+snippet >= "greater equal >=" Ai
+\geq
+endsnippet
+
+context math()
+snippet <= "lesser equal <=" Ai
+\leq
+endsnippet
+
+context math()
+snippet app "approx curly =" Ai
+\approx
+endsnippet
+
+
+context math()
+snippet times "multiplication dot" Ai
+\cdot
+endsnippet
+
+
+context math()
+snippet nroot "nth root" Ai
+\sqrt[$1]{$2}$0
+endsnippet
+
+context math()
+snippet min "Minus \" Ai
 \setminus
 endsnippet
 
+
+# joukko-oppi
 context math()
 snippet in "\in" A
 \in
 endsnippet
 
 context math()
-snippet nin "\notin" A
+snippet nin "\notin" Ai
 \notin
 endsnippet
 
 context math()
-snippet cup "\cup" A
+snippet cup "\cup" Ai
 \cup
 endsnippet
 
 context math()
-snippet cap "\cap" A
+snippet cap "\cap" Ai
 \cap
 endsnippet
 
 context math()
-snippet mid "\mid" A
+snippet mid "\mid" Ai
 \mid
+endsnippet
+
+
+
+
+
+snippet math "template for math files" bA
+\documentclass[a4paper, 12pt, openany]{article}
+
+\usepackage[utf8]{inputenc}
+\usepackage{parskip}
+
+\usepackage{mathtools}
+\usepackage{amssymb}
+\usepackage{framed}
+
+\normalsize
+
+\title{${1:The Title}}
+
+\begin{document}
+\maketitle
+
+$0
+
+\end{document}
 endsnippet
 
 snippet temp "Template file for uni tex files" bA

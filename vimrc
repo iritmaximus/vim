@@ -34,6 +34,13 @@ au BufNewFile,BufRead *.ts
   \ set softtabstop=2 |
   \ set shiftwidth=2 |
 
+" autocmd FileType tex setlocal wrap linebreak | nnoremap j gj | nnoremap k gk
+" au BufNewFile,BufRead *.tex
+"   \ nnoremap j gj |
+"   \ nnoremap k gk |
+"   \ setlocal wrap |
+"   \ setlocal linebreak |
+
 
 
 set tabstop=2             " tablength?
@@ -263,9 +270,9 @@ let g:UltiSnipsSnippetDirectories=[ "snips" ]
 let g:tex_flavor='latex'
 let g:vimtex_view_method='zathura'
 let g:vimtex_quickfix_mode=0
-set conceallevel=1
-let g:tex_conceal='abdmg'
-
+set conceallevel=0
+" let g:tex_conceal='abdmg'
+let g:vimtex_syntax_conceal_disable = 1
 
 
 " CTRLP

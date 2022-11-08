@@ -10,6 +10,7 @@ endglobal
 
 
 
+# complains about unicode characters
 snippet box "Box"
 `!p snip.rv = '┌' + '─' * (len(t[1]) + 2) + '┐'`
 │ $1 │
@@ -18,6 +19,7 @@ $0
 endsnippet
 
 
+# vanilla latex things
 snippet beg "begin{} - end{}" bA
 \begin{$1}
   $2
@@ -41,7 +43,6 @@ snippet hr "Href for url links"
 \href{${1:url}}{${2:display name}}$0
 endsnippet
 
-
 snippet it "item for itemize list" bA
 \item $0
 endsnippet
@@ -52,6 +53,18 @@ snippet enum "list enumerate" bA
 \end{enumerate}
 endsnippet
 
+snippet align "beg{align}" bA
+\begin{align}
+	$0
+\end{align}
+endsnippet
+
+snippet left "left {" A
+\left\{
+$0
+\right.
+endsnippet
+
 snippet bold "textbf{}" A
 \textbf{$1}$0
 endsnippet
@@ -59,6 +72,7 @@ endsnippet
 snippet sec "section" bA
 \section{$1}$0
 endsnippet
+
 
 
 
@@ -88,6 +102,10 @@ endsnippet
 
 
 
+
+
+
+# mathematical functions or such
 context math()
 snippet ^ "power to something" iA
 ^{${1:power}}$0
@@ -106,35 +124,32 @@ snippet ff "frac" Ai
 \frac{$1}{$2}$0
 endsnippet
 
-
 context math()
 snippet !() "switches () to \left and \right"
-\left(
+\left\(
 $0
-\right)
+\right\)
 endsnippet
 
 context math()
 snippet ![] "switches [] to \left and \right"
-\left[
+\left\[
 $0
-\right]
+\right\]
 endsnippet
 
 context math()
 snippet !{} "switches {} to \left and \right"
-\left{
+\left\{
 $0
-\right}
+\right\}
 endsnippet
 
 
 
-context math()
-snippet in "\in"
-\in
-endsnippet
 
+
+# math characters and symbols
 context math()
 snippet N "Luonnollinen luku" Ai
 \mathbb{N}
@@ -165,7 +180,15 @@ snippet pi "pi" Ai
 \pi
 endsnippet
 
+context math()
+snippet ri "rivi R" A
+R
+endsnippet
 
+
+
+
+# mathematical operations
 context math()
 snippet eq "equivalent" Ai
 \Leftrightarrow
@@ -186,22 +209,22 @@ snippet app "approx curly =" Ai
 \approx
 endsnippet
 
+context math()
+snippet min "Minus \" Ai
+\setminus
+endsnippet
 
 context math()
 snippet times "multiplication dot" Ai
 \cdot
 endsnippet
 
-
 context math()
 snippet nroot "nth root" Ai
 \sqrt[$1]{$2}$0
 endsnippet
 
-context math()
-snippet min "Minus \" Ai
-\setminus
-endsnippet
+
 
 
 # joukko-oppi
@@ -246,6 +269,7 @@ snippet math "template for math files" bA
 
 \normalsize
 
+\author{Aaro Koivukangas}
 \title{${1:The Title}}
 
 \begin{document}
@@ -265,14 +289,14 @@ snippet temp "Template file for uni tex files" bA
 
 \normalsize
 
-\title{${1:The Title}}
 \author{Aaro Koivukangas}
+\title{${1:The Title}}
 
 
 \begin{document}
 \maketitle
 
-${2:This is some text}
+$0
 
 \end{document}
 endsnippet

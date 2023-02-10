@@ -34,6 +34,11 @@ au BufNewFile,BufRead *.ts
   \ set softtabstop=2 |
   \ set shiftwidth=2 |
 
+au BufNewFile,BufRead *.k91
+  \ set tabstop=4 |
+  \ set softtabstop=4 |
+  \ set shiftwidth=4 |
+
 " autocmd FileType tex setlocal wrap linebreak | nnoremap j gj | nnoremap k gk
 " au BufNewFile,BufRead *.tex
 "   \ nnoremap j gj |
@@ -58,7 +63,7 @@ set list                  " absolutely no clue
 " hidden characters
 set listchars=eol:.,tab:>-,trail:~,extends:>,precedes:<
 
-" set cursorline          " horisontal line where the cursor is
+set cursorline          " horisontal line where the cursor is
 " set cursorcolumn        " vertical cursorline
 
 set number                " set line numbers
@@ -95,6 +100,13 @@ set t_Co=256                " 256 color support
 
 
 autocmd BufEnter * lcd %:p:h  " set vim dir to where vim was opened
+autocmd VimEnter * if !argc() | Explore | endif " opens explorer if only vim was called
+
+function! SynGroup()
+    let l:s = synID(line('.'), col('.'), 1)
+    echo synIDattr(l:s, 'name') . ' -> ' . synIDattr(synIDtrans(l:s), 'name')
+endfun   (with much fewer keystrokes)
+
 
 
 " SOURCING
@@ -139,6 +151,7 @@ nnoremap <Leader>ll <plug>(vimtex-compile)
 nnoremap <Leader>le <plug>(vimtex-errors)
 " nnoremap <Leader>x <plug>()
 
+nnoremap <Leader>ch :call SynGroup()<CR>
 
 " PLUGINS
 
@@ -158,6 +171,7 @@ Plug 'sainnhe/everforest'
 Plug 'ghifarit53/tokyonight-vim'
 
 Plug 'dense-analysis/ale'           " linting and syntax checking
+Plug 'mattn/emmet-vim'              " html tag managing
 
 Plug 'tpope/vim-commentary'         " comments lines
 Plug 'somini/vim-autoclose'         " closes brackets smartly
@@ -231,6 +245,8 @@ let g:ale_fixers = {
 \  "*": [ "remove_trailing_lines", "trim_whitespace" ]
 \}
 
+let g:ale_lint_on_save = 1
+
 
 
 
@@ -289,6 +305,21 @@ let g:ctrlp_working_path_mode = 'ra'
 
 " set wildignore+=/node_modules/*
 let g:ctrlp_custom_ignore = { 'dir': '\v(__pycache__|venv|build|node_modules)$' }
+
+
+
+
+
+" EMMET
+let g:user_emmet_leader_key='<C-Z>'
+
+
+
+
+
+
+
+
 " COOL PLUGINLESS STUFF
 set path+=**                  " tab completion for file related things
 
@@ -345,4 +376,3 @@ let g:netrw_list_hide.=',\(^\|\s\s\)\zs\.\S\+'
 
 " NOW WE CAN:
 " - Take over the world!
-"   (with much fewer keystrokes)

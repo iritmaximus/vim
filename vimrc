@@ -1,7 +1,7 @@
 " Vimrc setup
 
 
-nnoremap <SPACE> <Nop>        " make sure space is not mapped to something else
+nnoremap <Space> <nop>        " make sure space is not mapped to something else
 let mapleader = "\<SPACE>"    " leader key mapped to space
 
 set nocompatible              " needs to be on for reasons
@@ -64,13 +64,12 @@ set list                  " absolutely no clue
 set listchars=eol:.,tab:>-,trail:~,extends:>,precedes:<
 
 set cursorline          " horisontal line where the cursor is
-" set cursorcolumn        " vertical cursorline
+set cursorcolumn        " vertical cursorline
 
 set number                " set line numbers
 set relativenumber        " set relative line numbers
-set scrolloff=10           " screen rolls x amount of lines before
-set signcolumn=auto       " shows the column on the left if there is something
-" to show
+set scrolloff=0           " screen rolls x amount of lines before
+set signcolumn=auto       " shows the column on the left if there is something to show
 
 set showcmd               " lol not this one either
 " set noshowmode            " shows which mode you are in
@@ -191,7 +190,7 @@ Plug 'vimwiki/vimwiki'              " something close to irl notepad
 
 " Plug 'preservim/vim-pencil'         " for typing with vim
 " Plug 'preservim/vim-wordy'          " detect some weak and lazy things?
-Plug 'ron89/thesaurus_query.vim'    " used for searching synonyms or something
+" Plug 'ron89/thesaurus_query.vim'    " used for searching synonyms or something
 Plug 'junegunn/goyo.vim'            " so called zen mode for vim
 Plug 'junegunn/limelight.vim'       " highlights the thing you write
 

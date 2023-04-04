@@ -1,7 +1,7 @@
 " Vimrc setup
 
-
-nnoremap <Space> <nop>        " make sure space is not mapped to something else
+" make sure space is not mapped to something else
+nnoremap <Space> <nop>
 let mapleader = "\<SPACE>"    " leader key mapped to space
 
 set nocompatible              " needs to be on for reasons
@@ -39,13 +39,6 @@ au BufNewFile,BufRead *.k91
   \ set softtabstop=4 |
   \ set shiftwidth=4 |
 
-" autocmd FileType tex setlocal wrap linebreak | nnoremap j gj | nnoremap k gk
-" au BufNewFile,BufRead *.tex
-"   \ nnoremap j gj |
-"   \ nnoremap k gk |
-"   \ setlocal wrap |
-"   \ setlocal linebreak |
-
 
 
 set tabstop=2             " tablength?
@@ -63,8 +56,8 @@ set list                  " absolutely no clue
 " hidden characters
 set listchars=eol:.,tab:>-,trail:~,extends:>,precedes:<
 
-set cursorline          " horisontal line where the cursor is
-set cursorcolumn        " vertical cursorline
+" set cursorline          " horisontal line where the cursor is
+" set cursorcolumn        " vertical cursorline
 
 set number                " set line numbers
 set relativenumber        " set relative line numbers
@@ -91,8 +84,9 @@ set hlsearch              " highlights everything searched
 "   Ps = 4  -> steady underline.
 "   Ps = 5  -> blinking bar (xterm).
 "   Ps = 6  -> steady bar (xterm).
-" let &t_SI = "\e[6 q"
-" let &t_EI = "\e[2 q"
+let &t_SI = "\e[6 q"
+let &t_EI = "\e[2 q"
+
 
 set mouse=a                 " mouse support
 set t_Co=256                " 256 color support
@@ -121,53 +115,36 @@ nnoremap <Leader>s :so ~/.vim/vimrc<CR>
 nnoremap <Leader>e :edit .<CR>
 nnoremap <Leader>n :tabnew<CR>
 nnoremap <Leader>lb :set linebreak<CR>
-nnoremap <Leader>lB :set nolinebreak<CR>
+nnoremap <Leader>lnb :set nolinebreak<CR>
 
 
 nnoremap <Leader>ad :ALEDetail<CR>
 
-nnoremap <Leader>tr :ThesaurusQueryReplaceCurrentWord<CR>
-
 nnoremap <Leader>hh :HardTimeToggle<CR>
 nnoremap <Leader>H :HardTimeOff<CR>
-
-nnoremap <Leader>pt :PencilToggle<CR>
-nnoremap <Leader>pT :PencilOff<CR>
-
-nnoremap <Leader>go :Goyo<CR>
-nnoremap <Leader>gO :Goyo!<CR>
-
-nnoremap <Leader>hl :Limelight!!0.2<CR>
-nnoremap <Leader>hL :Limelight!<CR>
-
-nnoremap <Leader>wn :NextWordy<CR>
-nnoremap <Leader>wp :PrevWordy<CR>
-nnoremap <Leader>wN :NoWordy<CR>
 
 nnoremap <Leader>rs :call UltiSnips#RefreshSnippets()<CR>
 
 nnoremap <Leader>ll <plug>(vimtex-compile)
 nnoremap <Leader>le <plug>(vimtex-errors)
-" nnoremap <Leader>x <plug>()
 
+" sets current directory as project root
 nnoremap <Leader>ch :call SynGroup()<CR>
 
-" PLUGINS
+nnoremap <Leader>gt :Goyo<CR>
+nnoremap <Leader>go :Goyo!<CR>
 
-" polyglot
-" let g:polyglot_disabled = ['vim']
+
+" PLUGINS
 
 call plug#begin('~/.vim/plugged')
 
 Plug 'tpope/vim-fugitive'           " implements git commands in vim
 Plug 'airblade/vim-gitgutter'       " git diffs in signcolumn
 
-Plug 'dylanaraps/wal.vim'           " nice changing colors
 Plug 'NLKNguyen/papercolor-theme'   " some nice colorscheme
-Plug 'dracula/vim', { 'as': 'dracula' }
-Plug 'joshdick/onedark.vim'
-Plug 'sainnhe/everforest'
 Plug 'ghifarit53/tokyonight-vim'
+Plug 'frankier/neovim-colors-solarized-truecolor-only'
 
 Plug 'dense-analysis/ale'           " linting and syntax checking
 Plug 'mattn/emmet-vim'              " html tag managing
@@ -177,22 +154,14 @@ Plug 'somini/vim-autoclose'         " closes brackets smartly
 Plug 'Yggdroot/indentLine'          " shows | on different indenting levels
 Plug 'SirVer/ultisnips'           " nice snippets
 Plug 'mg979/vim-visual-multi'
-Plug 'ctrlpvim/ctrlp.vim'
+Plug 'junegunn/goyo.vim'          " for presentations :D
 
-" Plug 'sheerun/vim-polyglot'       " didin't work properly with typescript
 Plug 'leafgarland/typescript-vim'   " typescript syntax highlighting
-Plug 'maxmellon/vim-jsx-pretty'    " jsx aka react syntax highlighting
+Plug 'maxmellon/vim-jsx-pretty'     " jsx aka react syntax highlighting
 Plug 'lervag/vimtex'                " latex support
-" Plug 'python-mode/python-mode', { 'for': 'python', 'branch': 'develop' }
+Plug 'hdima/python-syntax'          " python support
 
 Plug 'takac/vim-hardtime'           " disables repeated use of hjkl
-Plug 'vimwiki/vimwiki'              " something close to irl notepad
-
-" Plug 'preservim/vim-pencil'         " for typing with vim
-" Plug 'preservim/vim-wordy'          " detect some weak and lazy things?
-" Plug 'ron89/thesaurus_query.vim'    " used for searching synonyms or something
-Plug 'junegunn/goyo.vim'            " so called zen mode for vim
-Plug 'junegunn/limelight.vim'       " highlights the thing you write
 
 call plug#end()
 
@@ -201,14 +170,24 @@ call plug#end()
 " color themes
 set termguicolors
 
-" set Vim-specific sequences for RGB colors
-let &t_8f = "\<Esc>[38;2;%lu;%lu;%lum"
-let &t_8b = "\<Esc>[48;2;%lu;%lu;%lum"
+if has("termguicolors")
+  set termguicolors
+  if &t_8f == ''
+    " The first characters after the equals sign are literal escape characters.
+    set t_8f=[38;2;%lu;%lu;%lum
+    set t_8b=[48;2;%lu;%lu;%lum
+  endif
+endif
 
-" colorscheme dracula                       " for the nice colors
-colorscheme tokyonight
+let g:solarized_termcolors=256
+" let g:solarized_visibility="normal"
+" let g:solarized_underline=0
+" let g:solarized_termtrans=1
 set background=dark                       " dark or light theme
+colorscheme solarized
 
+
+let python_highlight_all=1
 
 " PLUGIN THINGS
 
@@ -247,27 +226,9 @@ let g:ale_fixers = {
 let g:ale_lint_on_save = 1
 
 
-
-
 " vim hard mode
 
 let g:hardtime_default_on = 0
-
-
-
-" vim-pencil
-" augroup pencil
-"   autocmd!
-"   autocmd FileType markdown,mkd call pencil#init()
-"   autocmd FileType text         call pencil#init()
-"   autocmd FileType plaintex     call pencil#init()
-" augroup END
-
-" let g:pencil#cursorwrap = 0     " lets hl to wrap to other lines
-" let g:pencil#autoformat = 0     " combines lines that have linebreak but no gap
-" let g:pencil#textwidth = 74
-
-
 
 
 " ultisnippsss
@@ -276,9 +237,6 @@ let g:UltiSnipsJumpForwardTrigger = '<tab>'
 let g:UltiSnipsJumpBackwardTrigger = '<s-tab>'
 
 let g:UltiSnipsSnippetDirectories=[ "snips" ]
-
-
-
 
 
 " vimtex
@@ -303,7 +261,7 @@ let g:ctrlp_working_path_mode = 'ra'
 " let g:ctrlp_root_markers = ['pom.xml', '.p4ignore']
 
 " set wildignore+=/node_modules/*
-let g:ctrlp_custom_ignore = { 'dir': '\v(__pycache__|venv|build|node_modules)$' }
+let g:ctrlp_custom_ignore = { 'dir': '\v(__pycache__|venv|build|node_modules|target)$' }
 
 
 
@@ -311,12 +269,6 @@ let g:ctrlp_custom_ignore = { 'dir': '\v(__pycache__|venv|build|node_modules)$' 
 
 " EMMET
 let g:user_emmet_leader_key='<C-Z>'
-
-
-
-
-
-
 
 
 " COOL PLUGINLESS STUFF

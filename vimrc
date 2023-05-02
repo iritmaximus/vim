@@ -111,29 +111,36 @@ so ~/.vim/autoclose.vim         " bracket pairing
 
 " KEYBINDS
 nnoremap <CR> :noh<CR><CR>:<backspace>
-nnoremap <Leader>s :so ~/.vim/vimrc<CR>
+nnoremap <Leader>ss :so ~/.vim/vimrc<CR>
 nnoremap <Leader>e :edit .<CR>
 nnoremap <Leader>n :tabnew<CR>
-nnoremap <Leader>lb :set linebreak<CR>
-nnoremap <Leader>lnb :set nolinebreak<CR>
+" nnoremap <Leader>lb :set linebreak<CR>
+" nnoremap <Leader>lnb :set nolinebreak<CR>
 
+nnoremap <Leader>v :vsplit<CR>
+
+nnoremap <Leader>h <C-w>h
+nnoremap <Leader>l <C-w>l
+nnoremap <Leader>j <C-w>j
+nnoremap <Leader>k <C-w>k
+
+" nnoremap <Leader>hh :HardTimeToggle<CR>
+" nnoremap <Leader>H :HardTimeOff<CR>
 
 nnoremap <Leader>ad :ALEDetail<CR>
 
-nnoremap <Leader>hh :HardTimeToggle<CR>
-nnoremap <Leader>H :HardTimeOff<CR>
-
 nnoremap <Leader>rs :call UltiSnips#RefreshSnippets()<CR>
 
-nnoremap <Leader>ll <plug>(vimtex-compile)
-nnoremap <Leader>le <plug>(vimtex-errors)
+" nnoremap <Leader>ll <plug>(vimtex-compile)
+" nnoremap <Leader>le <plug>(vimtex-errors)
 
-" sets current directory as project root
+" sets current directory as project root???
 nnoremap <Leader>ch :call SynGroup()<CR>
 
 nnoremap <Leader>gt :Goyo<CR>
 nnoremap <Leader>go :Goyo!<CR>
 
+nnoremap <Leader>sw :w !sudo tee %<CR>
 
 " PLUGINS
 
@@ -264,6 +271,8 @@ let g:ctrlp_working_path_mode = 'ra'
 let g:ctrlp_custom_ignore = { 'dir': '\v(__pycache__|venv|build|node_modules|target)$' }
 
 
+" interferes with better movement
+let g:gitgutter_map_keys = 0
 
 
 
